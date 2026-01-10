@@ -3,7 +3,7 @@ title = "Subject To"
 
 # The homepage contents
 [extra]
-lead = 'A <b>unified</b> platform for developing, simulating, and deploying optimization models.'
+lead = 'A <b>unified</b> platform for developing, simulating, and deploying systems to solve sequential decision problems.'
 url = "/docs/getting-started/introduction/"
 url_button = "Get started"
 repo_version = ""
