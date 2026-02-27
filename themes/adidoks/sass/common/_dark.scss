@@ -2,13 +2,13 @@
 
 // Source: https://material.io/design/color/dark-theme.html
 
-$body-bg-dark: $gray-900;
+$body-bg-dark: #171615;
 $body-overlay-dark: darken($body-bg-dark, 2.5%);
 $border-dark: darken($body-bg-dark, 2.5%);
-$body-color-dark: $gray-300;
+$body-color-dark: #fffbf0;
 $dots-dark: darken($body-color-dark, 50%);
 
-$link-color-dark: $blue-300;
+$link-color-dark: #3c67f6;
 $button-color-dark: $link-color-dark;
 $focus-color-dark: lighten($link-color-dark, 2.5%);
 
@@ -250,16 +250,12 @@ body.dark .docs-toc::-webkit-scrollbar-thumb:hover {
   background: $border-dark;
 }
 
-body.dark .docs-links h3:not(:first-child) {
-  border-top: 1px solid $border-dark;
-}
 
 body.dark a.docs-link {
   color: $body-color-dark;
 }
 
 body.dark .page-links li:not(:first-child) {
-  border-top: 1px dashed $border-dark;
 }
 
 body.dark .card {

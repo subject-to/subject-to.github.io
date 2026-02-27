@@ -96,7 +96,7 @@ body {
 @include media-breakpoint-up(lg) {
   .docs-sidebar {
     order: 0;
-    border-right: 1px solid $gray-200;
+    border-right: 1px solid $gray-500;
   }
 
   @supports ((position:-webkit-sticky) or (position:sticky)) {
@@ -112,7 +112,7 @@ body {
 
 @include media-breakpoint-up(xl) {
   .docs-sidebar {
-    flex: 0 1 320px;
+    flex: 0 1 220px;
   }
 }
 
@@ -168,7 +168,7 @@ body {
 }
 
 .docs-navigation {
-  border-top: 1px solid $gray-200;
+  border-top: 1px solid $gray-500;
 }
 
 @include media-breakpoint-up(lg) {
