@@ -41,6 +41,7 @@ include_content = true
 
 [markdown.highlighting]
 theme = "catppuccin-frappe"
+style = "inline"
 
 [extra]
 # Put all your custom variables here
