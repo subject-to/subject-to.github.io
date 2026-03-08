@@ -25,14 +25,14 @@ weight = 20
 
 [[extra.list]]
 title = "Develop"
-content = 'Our Software Development Kit (SDK) enables...'
+content = 'Our Software Development Kit (SDK) enables you to use pre-defined and to develop custom policies.'
 
 [[extra.list]]
 title = "Simulate"
-content = 'Simulate "what-if" scenarios, sensitivity analysis...'
+content = 'Run large scale simulations to evaluate policies, and perform what-if scenarios and sensitivity analysis.'
 
 [[extra.list]]
 title = "Deploy"
-content = 'Deploy, monitor, and perform A/B testing to...'
+content = 'Monitor deployed policies to quantify business impact.'
 
 +++
