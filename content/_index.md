@@ -25,7 +25,7 @@ weight = 20
 
 [[extra.list]]
 title = "Develop"
-content = 'Our Software Development Kit (SDK) enables you to use pre-defined and to develop custom policies.'
+content = 'Our SDK supports both pre-defined and custom policies.'
 
 [[extra.list]]
 title = "Simulate"
