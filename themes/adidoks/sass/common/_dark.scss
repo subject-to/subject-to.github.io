@@ -2,13 +2,13 @@
 
 // Source: https://material.io/design/color/dark-theme.html
 
-$body-bg-dark: #171615;
+$body-bg-dark: $ink-1; // SlateDB ink-1
 $body-overlay-dark: darken($body-bg-dark, 2.5%);
 $border-dark: darken($body-bg-dark, 2.5%);
-$body-color-dark: #fffbf0;
+$body-color-dark: #eef0f3; // SlateDB surface-2
 $dots-dark: darken($body-color-dark, 50%);
 
-$link-color-dark: #3c67f6;
+$link-color-dark: lighten($terracotta, 12%);
 $button-color-dark: $link-color-dark;
 $focus-color-dark: lighten($link-color-dark, 2.5%);
 
@@ -20,6 +20,21 @@ $navbar-dark-active-color:          $link-color-dark;
 
 body.dark {
   background: $body-bg-dark;
+  color: $body-color-dark;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .h1,
+body.dark .h2,
+body.dark .h3,
+body.dark .h4,
+body.dark .h5,
+body.dark .h6 {
   color: $body-color-dark;
 }
 
@@ -90,8 +105,9 @@ body.dark .alert-primary a {
 }
 
 body.dark .alert-warning {
-  background: $body-overlay-dark;
+  background: rgba($terracotta, 0.12);
   color: $body-color-dark;
+  border-left: 3px solid $link-color-dark;
 }
 
 body.dark .page-links a {

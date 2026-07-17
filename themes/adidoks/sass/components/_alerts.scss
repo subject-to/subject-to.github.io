@@ -29,8 +29,9 @@
 }
 
 .alert-warning {
-  background: $beige;
+  background: $terracotta-low;
   color: $black;
+  border-left: 3px solid $primary;
 }
 
 /*

@@ -13,17 +13,20 @@ $gray-900: #212529;
 $black:    #000;
 
 $yellow:   #ffe000;
-$black:    #0d0d0d;
-$beige:    #fbf7f0;
+$black:    #1f2a37; // SlateDB ink-2 — body text
+$ink-1:    #0f1620; // SlateDB ink-1 — headings/darkest text
+$beige:    #ffffff; // SlateDB surface-1 — code block bg
 // $red:      #e55235;
 $purple:   #5d2f86;
 $brown:    #aa9c84;
 $elodin-blue: #1437f5;
+$terracotta: #b26844; // SlateDB accent
+$terracotta-low: #f3e3d8; // SlateDB accent-low — tinted callout bg
 
 $blue-300: #8ed6fb;
 $pink-500: #d32e9d;
 
-$primary: $elodin-blue;
+$primary: $terracotta;
 
 // Options
 //
@@ -58,7 +61,7 @@ $navbar-light-toggler-icon-bg: none;
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   #e4d9c3;
+$body-bg:                   #f6f7f9; // SlateDB surface-0
 $body-color:                $black;
 
 // Links
@@ -67,6 +70,8 @@ $body-color:                $black;
 
 $link-color:                              $primary;
 $link-decoration:                         none;
+
+$headings-color:                          $ink-1; // SlateDB ink-1 — darker than body text
 
 // Grid containers
 //

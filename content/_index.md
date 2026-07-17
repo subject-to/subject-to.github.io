@@ -3,7 +3,7 @@ title = "Subject To"
 
 # The homepage contents
 [extra]
-lead = 'A <b>unified</b> platform for solving sequential decision problems.'
+lead = "A <b>unified</b> platform for solving sequential decision problems."
 url = "/docs/getting-started/introduction/"
 url_button = "Get started"
 repo_version = ""
@@ -25,14 +25,14 @@ weight = 20
 
 [[extra.list]]
 title = "Develop"
-content = 'Our SDK supports both pre-defined and custom policies.'
+content = "Our SDK supports both pre-defined and custom policies."
 
 [[extra.list]]
 title = "Simulate"
-content = 'Run large scale simulations to evaluate policies, and perform what-if scenarios and sensitivity analysis.'
+content = "Run large scale simulations to compare policies, perform what-if scenarios, and sensitivity analysis."
 
 [[extra.list]]
 title = "Deploy"
-content = 'Monitor deployed policies to quantify business impact.'
+content = "Evaluate deployed policies and run shadow deployments."
 
 +++
