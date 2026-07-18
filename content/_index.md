@@ -3,7 +3,7 @@ title = "Subject To"
 
 # The homepage contents
 [extra]
-lead = "A <b>unified</b> platform for solving sequential decision problems."
+lead = "A toolkit for solving sequential decision problems."
 url = "/docs/getting-started/introduction/"
 url_button = "Get started"
 repo_version = ""
@@ -29,7 +29,7 @@ content = "Our SDK supports both pre-defined and custom policies."
 
 [[extra.list]]
 title = "Simulate"
-content = "Run large scale simulations to compare policies, perform what-if scenarios, and sensitivity analysis."
+content = "Run large scale simulations to compare policies and perform what-if scenarios."
 
 [[extra.list]]
 title = "Deploy"
