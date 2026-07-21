@@ -8,7 +8,7 @@ template = "blog/page.html"
 authors = ["Gabriel Stechschulte"]
 
 [extra]
-lead = "A unified platform for developing and deploying policies used to solve sequential decision problems in business contexts."
+lead = "A toolkit for developing and deploying policies used to solve sequential decision problems."
 math = true
 +++
 
