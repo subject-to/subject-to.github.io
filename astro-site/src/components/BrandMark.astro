@@ -1,0 +1,30 @@
+---
+// The Subject To brand glyph: a "less-than-or-equal" (≤) mark — the optimizer's
+// "subject to" constraint, and the successor to the old "s.t." wordmark.
+//
+// Drawn as inline SVG so it stays crisp at any size and recolors itself with
+// the theme: stroke="currentColor" means it takes the surrounding `color`, so
+// it is ink on the light paper and paper on the dark ink with no asset swap.
+// Height is driven by the parent's font-size (width auto-scales from viewBox).
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 40 42"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role="img"
+  aria-hidden="true"
+>
+  <!-- the chevron ("<"), vertex at the left -->
+  <path d="M29 8 L11 21 L29 34" />
+  <!-- the bar underneath, set off by a gap ("_") -->
+  <line x1="12.5" y1="39" x2="29" y2="39" />
+</svg>

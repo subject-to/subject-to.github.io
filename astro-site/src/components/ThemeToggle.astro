@@ -1,0 +1,68 @@
+---
+// Light/dark toggle button, shared by the docs Header and the standalone
+// homepage/blog headers. It flips `data-theme` and persists the explicit
+// choice to localStorage['st-theme'] (the same key ThemeInit.astro reads).
+//
+// Two icons live in the button; CSS shows whichever matches the current theme,
+// so the icon updates purely from `data-theme` with no JS icon-swapping.
+---
+<button
+  type="button"
+  class="theme-toggle"
+  aria-label="Toggle light and dark theme"
+  title="Toggle light and dark theme"
+>
+  <!-- sun: shown in dark mode (click → go light) -->
+  <svg class="icon icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+  </svg>
+  <!-- moon: shown in light mode (click → go dark) -->
+  <svg class="icon icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+</button>
+
+<script is:inline>
+  document.querySelectorAll('.theme-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('st-theme', next);
+      } catch (e) {
+        /* storage unavailable (private mode) — the in-page switch still works */
+      }
+    });
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border, var(--sl-color-hairline-shade));
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted, var(--sl-color-gray-3));
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .theme-toggle:hover {
+    color: var(--accent-mid, var(--sl-color-text-accent));
+    border-color: var(--accent-mid, var(--sl-color-text-accent));
+  }
+  .icon { display: none; }
+  /* Show the sun in dark mode, the moon in light mode. */
+  :global(:root[data-theme='dark']) .icon--sun { display: block; }
+  :global(:root[data-theme='light']) .icon--moon { display: block; }
+  /* Fallback before data-theme resolves: show the moon. */
+  :global(:root:not([data-theme])) .icon--moon { display: block; }
+</style>

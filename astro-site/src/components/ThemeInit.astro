@@ -1,0 +1,33 @@
+---
+// Shared, pre-paint theme initializer. Included in EVERY document head:
+//   - Starlight docs (via ThemeProvider.astro)
+//   - the standalone homepage (index.astro)
+//   - the standalone blog (Blog.astro)
+//
+// It must run inline in <head> BEFORE first paint so the page renders in the
+// right theme with no flash (FOUC). It sets `document.documentElement.dataset
+// .theme` to 'light' | 'dark'; all three contexts style off that attribute.
+//
+// Storage contract (shared with ThemeToggle.astro):
+//   localStorage['st-theme'] = 'light' | 'dark'   (an explicit user choice)
+//   absent                                          (no choice yet → follow OS)
+---
+<script is:inline>
+  (function () {
+    // Resolution policy: an explicit stored choice wins; otherwise mirror the
+    // OS setting; if storage is unreadable (e.g. Safari private mode), fall
+    // back to light. Runs before first paint so there is no flash.
+    var theme = 'light';
+    try {
+      var stored = localStorage.getItem('st-theme');
+      if (stored === 'light' || stored === 'dark') {
+        theme = stored;
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      }
+    } catch (e) {
+      /* storage/matchMedia unavailable — keep the light fallback */
+    }
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>

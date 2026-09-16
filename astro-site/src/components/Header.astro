@@ -1,0 +1,103 @@
+---
+// Overrides Starlight's default header so the docs get the same top nav as the
+// homepage (Docs / Blog / GitHub), next to the site title and search.
+// Adapted from slatedb/website/src/components/Header.astro.
+import Search from '@astrojs/starlight/components/Search.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import BrandMark from './BrandMark.astro';
+---
+
+<div class="header">
+  <div class="title-wrapper sl-flex">
+    <a class="brand" href="/" aria-label="Subject To — home">
+      <BrandMark class="brand-mark" />
+      <span class="brand-name">subject&nbsp;to</span>
+    </a>
+  </div>
+  <div class="sl-hidden md:sl-flex right-group print:hidden">
+    <div class="search-wrapper print:hidden">
+      <Search />
+    </div>
+    <div class="sl-flex header-links">
+      <a href="/docs/getting-started/introduction/" class="header-link">Docs</a>
+      <a href="/blog/" class="header-link">Blog</a>
+      <a href="https://github.com/GStechschulte" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
+    </div>
+    <ThemeToggle />
+  </div>
+</div>
+
+<style>
+  .header {
+    display: flex;
+    gap: var(--sl-nav-gap);
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .title-wrapper {
+    overflow: clip;
+    padding: 0.25rem;
+    margin: -0.25rem;
+    min-width: 0;
+  }
+
+  /* Icon + wordmark, slatedb-style. `color` drives the currentColor glyph AND
+     the name, so both track the theme (ink on light, paper on dark). */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 0;
+    color: var(--sl-color-text);
+    text-decoration: none;
+  }
+  .brand-mark { height: 1.5rem; width: auto; display: block; }
+  /* Wordmark: EB Garamond small-caps, weight 600, 0.02em tracking —
+     canonical wordmark shared with the homepage and blog headers. */
+  .brand-name {
+    font-family: var(--sl-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    font-variant: small-caps;
+    white-space: nowrap;
+  }
+
+  .search-wrapper {
+    flex: 1;
+    width: 320px;
+    justify-content: flex-end;
+  }
+
+  .right-group {
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .header-links {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .header-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .header-link:hover {
+    color: var(--sl-color-text-accent);
+  }
+
+  .sl-flex {
+    display: flex;
+  }
+</style>

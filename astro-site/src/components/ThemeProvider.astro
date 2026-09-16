@@ -1,0 +1,8 @@
+---
+// Overrides Starlight's ThemeProvider. Starlight's default injects its own
+// theme <select>; the docs use a custom Header with a ThemeToggle button
+// instead, so here we only run the shared pre-paint initializer. Docs, blog,
+// and homepage all resolve their theme through the same ThemeInit script.
+import ThemeInit from './ThemeInit.astro';
+---
+<ThemeInit />

@@ -1,0 +1,103 @@
+---
+// Tag archive — lists every post carrying one tag, in the same TOC-list style
+// as the blog index. One static page per distinct tag slug.
+import { getCollection } from 'astro:content';
+import Blog from '../../../layouts/Blog.astro';
+import { getAllTags, postsWithTag, slugifyTag } from '../../../lib/tags';
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  const posts = await getCollection('blog');
+  return tags.map((t) => ({
+    params: { tag: t.slug },
+    props: { label: t.label, posts: postsWithTag(posts, t.slug) },
+  }));
+}
+
+const { label, posts } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+const roman = (n: number): string => {
+  const map: [number, string][] = [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+  let out = '';
+  for (const [v, s] of map) {
+    while (n >= v) { out += s; n -= v; }
+  }
+  return out;
+};
+---
+
+<Blog title={`${label} — Subject To Blog`} description={`Posts tagged ${label}.`}>
+  <div class="index">
+    <section class="group">
+      <h2 class="group-label">Tag · {label}</h2>
+      <div class="group-meta">
+        <span class="group-count">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</span>
+        <a class="group-rss" href="/blog/">all posts</a>
+      </div>
+      <ul class="rows">
+        {posts.map((post, i) => (
+          <li>
+            <a class="row" href={`/blog/${post.id}/`}>
+              <span class="row-num">{roman(i + 1)}</span>
+              <span class="row-title">{post.data.title}</span>
+              <time class="row-date" datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+              <span class="row-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Blog>
+
+<style>
+  .index { max-width: 44rem; margin: 0 auto; padding: 4rem 0 2rem; }
+  .group { position: relative; }
+  .group-label,
+  .group-meta {
+    position: absolute;
+    top: -0.6rem;
+    background-color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .group-label { left: 0; margin: 0; padding: 0 0.6rem 0 0; font-weight: 500; color: var(--muted); }
+  .group-meta {
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0 0 0 0.6rem;
+    color: var(--muted);
+  }
+  .group-rss { color: var(--accent-mid); text-decoration: none; transition: color 0.15s ease; }
+  .group-rss:hover { color: var(--accent-high); }
+
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+  .row {
+    display: flex;
+    align-items: baseline;
+    padding: 0.85rem 0.25rem 0.85rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .row-num { flex: 0 0 2.25rem; font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--muted); transition: color 0.15s ease; }
+  .row-title { flex: 0 1 auto; font-size: 1.3rem; line-height: 1.3; color: var(--ink); min-width: 0; transition: color 0.15s ease; }
+  .row-date { flex: 0 0 auto; margin-left: auto; padding-left: 1.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; transition: color 0.15s ease; }
+  .row-arrow { flex: 0 0 auto; margin-left: 0.85rem; color: var(--muted); font-size: 0.95rem; transition: transform 0.15s ease, color 0.15s ease; }
+  .row:hover .row-num { color: var(--accent-mid); }
+  .row:hover .row-title { color: var(--accent-high); }
+  .row:hover .row-date { color: var(--accent-mid); }
+  .row:hover .row-arrow { color: var(--accent-mid); transform: translateX(0.3rem); }
+
+  @media (max-width: 560px) {
+    .row-num { flex-basis: 1.75rem; }
+    .row-title { font-size: 1.15rem; }
+  }
+</style>

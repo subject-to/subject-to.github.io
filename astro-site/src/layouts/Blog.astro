@@ -1,0 +1,173 @@
+---
+// Standalone shell for the blog — mirrors slatedb/website/src/layouts/Blog.astro.
+// Like the homepage, the blog bypasses the Starlight docs frame and carries its
+// own <head>, top nav, and footer so it renders through a bespoke layout.
+// Colors/fonts come from the raw material tokens (declared here + in custom.css).
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const ghHref = 'https://github.com/GStechschulte';
+const docsHref = '/docs/getting-started/introduction/';
+
+import ThemeInit from '../components/ThemeInit.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import BrandMark from '../components/BrandMark.astro';
+---
+
+<!doctype html>
+<!-- data-theme is set at runtime by ThemeInit, shared with docs + homepage. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- Pre-paint theme init (shared with docs + homepage). Precedes styles. -->
+    <ThemeInit />
+    {description && <meta name="description" content={description} />}
+    <link rel="alternate" type="application/rss+xml" title="Subject To Blog" href="/blog/rss.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Subject To — home">
+        <BrandMark class="brand-mark" />
+        <span class="brand-name">subject&nbsp;to</span>
+      </a>
+      <nav class="header-links" aria-label="Primary">
+        <a class="header-link" href={docsHref}>docs</a>
+        <a class="header-link" href="/blog/">blog</a>
+        <a class="header-link" href={ghHref} target="_blank" rel="noopener noreferrer">github</a>
+        <ThemeToggle />
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>Subject&nbsp;To</span>
+      <span class="footer-dot" aria-hidden="true">·</span>
+      <a href={ghHref} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="footer-dot" aria-hidden="true">·</span>
+      <a href="/blog/rss.xml">RSS</a>
+    </footer>
+
+    <style>
+      /* Material tokens (raw :root — resolve without the Starlight frame). */
+      :root {
+        --paper: #f4ebdd;
+        --ink: #231f1a;
+        --body-text: #2e2820;
+        --muted: #857a66;
+        --border: #d9ccb8;
+        --hover-bg: #ece0cb;
+        --accent-mid: #9c4f28;
+        --accent-high: #7a3a1c;
+        --font-serif: 'EB Garamond', ui-serif, Georgia, 'Times New Roman', serif;
+        --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      /* Dark palette — driven by data-theme (set by ThemeInit / the toggle),
+         matching the homepage and the docs' dark ramp. */
+      :root[data-theme='dark'] {
+        --paper: #1c1712;
+        --ink: #ece1cf;
+        --body-text: #ddd0ba;
+        --muted: #6d6252;
+        --border: #33291f;
+        --hover-bg: #2a2118;
+        --accent-mid: #d98a5c;
+        --accent-high: #ece1cf;
+      }
+
+      :global(html) { background: var(--paper); }
+      :global(body) {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--paper);
+        color: var(--body-text);
+        font-family: var(--font-serif);
+        line-height: 1.7;
+        font-feature-settings: 'onum' 1, 'pnum' 1, 'kern' 1, 'liga' 1;
+      }
+
+      .site-header {
+        max-width: 60rem;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 1.5rem;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      /* Icon + wordmark — canonical brand shared with homepage + docs. */
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        line-height: 0;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .brand-mark { height: 1.5rem; width: auto; display: block; }
+      .brand-name {
+        font-weight: 600;
+        font-size: 1.15rem;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        font-variant: small-caps;
+        white-space: nowrap;
+      }
+      .header-links { display: flex; gap: 1.5rem; }
+      .header-link {
+        color: var(--muted);
+        text-decoration: none;
+        font-variant: small-caps;
+        letter-spacing: 0.04em;
+        font-size: 1.05rem;
+        transition: color 0.15s ease;
+      }
+      .header-link:hover { color: var(--accent-mid); }
+
+      main {
+        flex: 1;
+        max-width: 60rem;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 0 1.5rem;
+      }
+
+      .site-footer {
+        max-width: 60rem;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 2rem 1.5rem 3rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--muted);
+        font-variant: small-caps;
+        letter-spacing: 0.03em;
+      }
+      .site-footer a { color: var(--muted); text-decoration: none; }
+      .site-footer a:hover { color: var(--accent-mid); }
+      .footer-dot { color: var(--border); }
+    </style>
+  </body>
+</html>

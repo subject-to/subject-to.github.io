@@ -1,0 +1,172 @@
+/* ---------------------------------------------------------------
+ * Subject To — rag-paper + EB Garamond identity
+ * Ported from gstechschulte.github.io's custom.css. One file remaps
+ * Starlight's design tokens, so docs, blog, and the homepage all share
+ * this look. (Same mechanism as slatedb/website; different values.)
+ * ------------------------------------------------------------- */
+
+:root {
+  /* Material tokens — rag paper + printer ink. */
+  --paper: #f4ebdd;
+  --ink: #231f1a;
+  --body-text: #2e2820;
+  --muted: #857a66;
+  --border: #d9ccb8;
+  --hover-bg: #ece0cb;
+  --accent-mid: #9c4f28;   /* printer's red-brown */
+  --accent-high: #7a3a1c;
+  --accent-low: #ece0cb;
+
+  /* Typography — a single serif face for body + headings, like the blog. */
+  --sl-font: 'EB Garamond', ui-serif, Georgia, 'Times New Roman', serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sl-line-height: 1.7;
+  --sl-line-height-headings: 1.2;
+
+  /* Narrower, more readable column (a serif at this size wants a tight measure). */
+  --sl-content-width: 46rem;
+}
+
+/* -- Light theme: map Starlight's palette onto the rag-paper ramp -------
+ * Note Starlight's inverted naming: --sl-color-white is the HIGHEST-contrast
+ * text (darkest in light mode); --sl-color-black is the page background. */
+:root[data-theme='light'] {
+  --sl-color-white: var(--ink);
+  --sl-color-gray-1: #2e2820;
+  --sl-color-gray-2: #3a3228;
+  --sl-color-gray-3: #5c5342;
+  --sl-color-gray-4: #857a66;
+  --sl-color-gray-5: #b6a98f;
+  --sl-color-gray-6: #d9ccb8;
+  --sl-color-gray-7: #ece0cb;
+  --sl-color-black: var(--paper);
+
+  --sl-color-accent: var(--accent-mid);
+  --sl-color-accent-high: var(--accent-high);
+  --sl-color-accent-low: var(--accent-low);
+
+  --sl-color-bg: var(--paper);
+  --sl-color-bg-nav: var(--paper);
+  --sl-color-bg-sidebar: var(--paper);
+  --sl-color-text: #2e2820;
+  --sl-color-text-accent: var(--accent-mid);
+  --sl-color-bg-inline-code: rgba(35, 31, 26, 0.06);
+
+  --sl-color-hairline: rgba(35, 31, 26, 0.08);
+  --sl-color-hairline-light: rgba(35, 31, 26, 0.06);
+  --sl-color-hairline-shade: rgba(35, 31, 26, 0.1);
+}
+
+/* -- Dark theme: warm ink, mirroring the blog's dark palette ------------ */
+:root[data-theme='dark'] {
+  --sl-color-white: #ece1cf;
+  --sl-color-gray-1: #ddd0ba;
+  --sl-color-gray-2: #cabfa8;
+  --sl-color-gray-3: #9a8c74;
+  --sl-color-gray-4: #6d6252;
+  --sl-color-gray-5: #4a3f30;
+  --sl-color-gray-6: #33291f;
+  --sl-color-gray-7: #241d15;
+  --sl-color-black: #1c1712;
+
+  --sl-color-accent: #d98a5c;
+  --sl-color-accent-high: #ece1cf;
+  --sl-color-accent-low: #2a2118;
+
+  --sl-color-bg: #1c1712;
+  --sl-color-bg-nav: #1c1712;
+  --sl-color-bg-sidebar: #1c1712;
+  --sl-color-text: #ddd0ba;
+  --sl-color-text-accent: #d98a5c;
+  --sl-color-bg-inline-code: rgba(236, 225, 207, 0.08);
+
+  --sl-color-hairline: rgba(236, 225, 207, 0.08);
+  --sl-color-hairline-light: rgba(236, 225, 207, 0.06);
+  --sl-color-hairline-shade: rgba(236, 225, 207, 0.1);
+}
+
+/* -- Old-style figures + ligatures site-wide, like the blog ------------- */
+body {
+  font-feature-settings: 'onum' 1, 'pnum' 1, 'kern' 1, 'liga' 1;
+}
+
+/* Headings in spaced small caps (the blog's running-head treatment). */
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  font-variant: small-caps;
+  font-feature-settings: 'smcp' 1, 'onum' 1, 'kern' 1;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* ===============================================================
+ * Homepage hero (splash page) — the optimization statement
+ * =============================================================== */
+.hero-problem-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem 0 1rem;
+}
+
+.problem {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.4rem 1.1rem;
+  align-items: baseline;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+.problem__label {
+  color: var(--sl-color-white);
+  font-style: italic;
+  text-align: right;
+}
+
+.operand {
+  font-family: var(--sl-font-mono);
+  color: var(--sl-color-accent);
+  font-size: 0.82em;
+  font-weight: 500;
+  transition: opacity 0.35s ease;
+}
+
+.operand.is-swapping { opacity: 0; }
+
+.brace {
+  align-self: stretch;
+  width: 0.55em;
+  border: 3px solid var(--sl-color-white);
+  border-left: 0;
+  border-radius: 0 14px 14px 0;
+  margin: 0.15em 0;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+.annotation {
+  max-width: 24ch;
+  color: var(--sl-color-gray-3);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+/* Scroll-reveal sections on the homepage. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .operand { transition: none; }
+}
