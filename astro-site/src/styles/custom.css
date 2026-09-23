@@ -13,9 +13,9 @@
   --muted: #857a66;
   --border: #d9ccb8;
   --hover-bg: #ece0cb;
-  --accent-mid: #9c4f28;   /* printer's red-brown */
-  --accent-high: #7a3a1c;
-  --accent-low: #ece0cb;
+  --accent-mid: #4a6378;
+  --accent-high: #35495a;
+  --accent-low: #e2e8ee;
 
   /* Typography — a single serif face for body + headings, like the blog. */
   --sl-font: 'EB Garamond', ui-serif, Georgia, 'Times New Roman', serif;
@@ -69,15 +69,15 @@
   --sl-color-gray-7: #241d15;
   --sl-color-black: #1c1712;
 
-  --sl-color-accent: #d98a5c;
+  --sl-color-accent: #7ea3bf;
   --sl-color-accent-high: #ece1cf;
-  --sl-color-accent-low: #2a2118;
+  --sl-color-accent-low: #1e2a33;
 
   --sl-color-bg: #1c1712;
   --sl-color-bg-nav: #1c1712;
   --sl-color-bg-sidebar: #1c1712;
   --sl-color-text: #ddd0ba;
-  --sl-color-text-accent: #d98a5c;
+  --sl-color-text-accent: #7ea3bf;
   --sl-color-bg-inline-code: rgba(236, 225, 207, 0.08);
 
   --sl-color-hairline: rgba(236, 225, 207, 0.08);

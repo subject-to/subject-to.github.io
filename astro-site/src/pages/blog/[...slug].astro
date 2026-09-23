@@ -125,6 +125,20 @@ const isoDate = pubDate.toISOString();
 
   /* ---- Prose ---- */
   .post-body { font-size: 1.2rem; color: var(--body-text); }
+
+  /* Drop capital on the opening paragraph only — mirrors gstechschulte.github.io.
+     Guarded to a <p> that is the first child, so posts opening with a
+     heading, list, or image are left untouched. */
+  .post-body :global(> p:first-child::first-letter) {
+    float: left;
+    font-family: var(--font-serif);
+    font-size: 3.4em;
+    line-height: 0.78;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 0.02em 0.09em 0 0;
+    margin-top: 0.02em;
+  }
   .post-body :global(h2),
   .post-body :global(h3),
   .post-body :global(h4) {

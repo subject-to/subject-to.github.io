@@ -99,7 +99,7 @@ import BrandMark from "../components/BrandMark.astro";
             <section class="hero">
                 <div class="hero-text">
                     <h1 class="hero-headline">
-                        Decisions, made <em>optimal.</em>
+                        Decision making under <em>uncertainty.</em>
                     </h1>
                     <p class="hero-sub">{description}</p>
                     <div class="hero-ctas">
@@ -203,7 +203,7 @@ import BrandMark from "../components/BrandMark.astro";
         </script>
         <style>
             /* Homepage-local layout. Colors come from the raw material tokens in
-         custom.css (:root), so they resolve without the Starlight frame. */
+            custom.css (:root), so they resolve without the Starlight frame. */
             :root {
                 --paper: #f4ebdd;
                 --ink: #231f1a;
@@ -211,8 +211,8 @@ import BrandMark from "../components/BrandMark.astro";
                 --muted: #857a66;
                 --border: #d9ccb8;
                 --hover-bg: #ece0cb;
-                --accent-mid: #9c4f28;
-                --accent-high: #7a3a1c;
+                --accent-mid: #4a6378;
+                --accent-high: #35495a;
                 --font-serif:
                     "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
                 --font-mono:
@@ -221,7 +221,7 @@ import BrandMark from "../components/BrandMark.astro";
             }
 
             /* Dark palette — driven by data-theme (set by ThemeInit / the toggle),
-         mirroring the docs' dark ramp in custom.css. */
+            mirroring the docs' dark ramp in custom.css. */
             :root[data-theme="dark"] {
                 --paper: #1c1712;
                 --ink: #ece1cf;
@@ -229,7 +229,7 @@ import BrandMark from "../components/BrandMark.astro";
                 --muted: #6d6252;
                 --border: #33291f;
                 --hover-bg: #2a2118;
-                --accent-mid: #d98a5c;
+                --accent-mid: #7ea3bf;
                 --accent-high: #ece1cf;
             }
 
@@ -265,7 +265,7 @@ import BrandMark from "../components/BrandMark.astro";
                 justify-content: space-between;
             }
             /* Icon + wordmark, slatedb-style. `color` feeds the currentColor glyph
-         and the name together, so both flip with data-theme (ink ⇄ paper). */
+            and the name together, so both flip with data-theme (ink ⇄ paper). */
             .brand {
                 display: inline-flex;
                 align-items: center;
@@ -280,7 +280,7 @@ import BrandMark from "../components/BrandMark.astro";
                 display: block;
             }
             /* Wordmark: EB Garamond small-caps, weight 600, 0.02em tracking —
-         canonical wordmark shared with the blog and docs headers. */
+            canonical wordmark shared with the blog and docs headers. */
             .brand-name {
                 font-family: var(--font-serif);
                 font-size: 1.35rem;
